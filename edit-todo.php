@@ -4,10 +4,12 @@ $filename = __DIR__ . '/data/todos.json'; // Get the file path
 $_GET = filter_input_array(INPUT_GET, FILTER_SANITIZE_FULL_SPECIAL_CHARS); // Filter the query string
 $id = $_GET['id'] ?? ''; // Get the id from the query string
 
+// Check if the id is set
 if ($id) {
     $data = file_get_contents($filename); // Get the file content
     $todos = json_decode($data, true) ?? []; // Decode the file content
 
+    // Check if there are todos
     if (count($todos)) {
         $todoIndex = (int) array_search($id, array_column($todos, 'id')); // Get the index of the todo item
         $todos[$todoIndex]['done'] = !$todos[$todoIndex]['done'];  // Toggle the done status
