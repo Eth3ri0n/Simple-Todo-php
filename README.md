@@ -25,13 +25,13 @@ ___
 Clone the project
 
 ```bash
-  git clone https://link-to-project
+  git clone https://github.com/Eth3ri0n/Simple-Todo-php.git
 ```
 
 Go to the project directory
 
 ```bash
-  cd blog-project
+  cd Simple-Todo-php
 ```
 
 Start the server
