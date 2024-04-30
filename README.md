@@ -18,7 +18,6 @@ This is a simple Todo project made with **PHP 8.3.6**.
 `
 php -S localhost:port
 `
-___
 
 ## Run Locally
 
