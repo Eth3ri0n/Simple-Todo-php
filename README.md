@@ -15,7 +15,7 @@ This is a simple Todo project made with **PHP 8.3.6**.
 
 **Server**
 
-```bash
+```
 php -S localhost:port
 ```
 ___
