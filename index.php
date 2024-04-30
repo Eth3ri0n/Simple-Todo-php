@@ -8,23 +8,26 @@ $error = "";
 $todo = "";
 $todos = [];
 
+// Check if file exists
 if (file_exists($filename)) {
-    $data = file_get_contents($filename);
-    $todos = json_decode($data, true) ?? [];
+    $data = file_get_contents($filename); // Get data from file
+    $todos = json_decode($data, true) ?? []; // Decode data from json to array
 }
 
 if (
     $_SERVER['REQUEST_METHOD'] === 'POST'
 ) {
-    $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $todo = $_POST['todo'] ?? '';
+    $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS); // Sanitize input
+    $todo = $_POST['todo'] ?? ''; // Get todo from input
 
+    // Validate todo
     if (!$todo) {
         $error = ERROR_REQUIRED;
     } elseif (mb_strlen($todo) < 3) {
         $error = ERROR_TOO_SHORT;
     }
 
+    // If no error, add todo to list
     if (!$error) {
         $todos = [
             ...$todos,
@@ -34,8 +37,8 @@ if (
                 'done' => false,
             ]
         ];
-        file_put_contents($filename, json_encode($todos, JSON_PRETTY_PRINT));
-        header('Location: /');
+        file_put_contents($filename, json_encode($todos, JSON_PRETTY_PRINT)); // Save data to file
+        header('Location: /'); // Redirect to home page
     }
 }
 ?>
